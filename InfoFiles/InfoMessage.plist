@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Intro</key>
+	<dict>
+		<key>rank</key>
+		<integer>0</integer>
+		<key>name</key>
+		<string>Introduction</string>
+		<key>message</key>
+		<string>Eat It Or Not is designed to assist individuals with intellectual and other developmental disabilities to identify the nutritional content of various food items and the extent to which they reflect the recommendations of the 2015 - 2020 Dietary Guidelines for Americans issued by the United States Department of Health and Human Services and the United Sates Department of Agriculture.  </string>
+	</dict>
+	<key>Privacy</key>
+	<dict>
+		<key>rank</key>
+		<integer>4</integer>
+		<key>name</key>
+		<string>PrivacyPolicy</string>
+		<key>message</key>
+		<string>EatItOrNot does not use or store any information about the user. </string>
+	</dict>
+	<key>Version</key>
+	<dict>
+		<key>rank</key>
+		<integer>3</integer>
+		<key>name</key>
+		<string>Version</string>
+		<key>message</key>
+		<string>This is version 1.0</string>
+	</dict>
+	<key>Contact Us</key>
+	<dict>
+		<key>rank</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>Contact Us</string>
+		<key>message</key>
+		<string>Email us at info@apps-by-george.com or visit www.arcschenectady.org</string>
+	</dict>
+	<key>OurCollaboratorsAndFunding</key>
+	<dict>
+		<key>rank</key>
+		<integer>2</integer>
+		<key>name</key>
+		<string>Collaborators and Funding</string>
+		<key>message</key>
+		<string>This app was designed by Susan J. Kohler, Ph.D. in collaboration with Schenectady ARC with nutritional consultation provided by Cornell Cooperative Extension of Schenectady County, New York.  It was funded in part through a grant from the New York State Department of Health Disability and Health Program through a grant from the Centers for Disease Control and Prevention (CDC-RFA-DD16-1603)</string>
+	</dict>
+	<key>SchenectadyARC</key>
+	<dict>
+		<key>rank</key>
+		<integer>1</integer>
+		<key>name</key>
+		<string>Schenectady ARC</string>
+		<key>message</key>
+		<string>Established in 1952, Schenectady County Chapter, NYSARC, Inc. (Schenectady ARC) assists 1,800 individuals with intellectual and other developmental disabilities (I/DD) to lead meaningful, productive and fully integrated lives through the provision of person-centered vocational, residential, clinical, family support and day habilitation services.  We are one of 52 chapters of the Arc New York, a 501(c)(3) statewide organization that collectively serves over 60,000 individuals with I/DD, making it the largest entity of its kind in the United States.  Accredited by the Council on Quality and Leadership, Schenectady ARC’s mission is to help people in New York State’s Capital Region enjoy healthy, rewarding lives as members of their community and to bring staff, families and the community together to encourage dreams and respond to each person&apos;s life choices by offering high quality services, resources and supports.  Proceeds from the purchase of this app are used to support the many services and supports offered by Schenectady ARC.  For more information about Schenectady ARC, please visit www.arcschenectady.org</string>
+	</dict>
+</dict>
+</plist>

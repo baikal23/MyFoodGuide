@@ -4,7 +4,17 @@
 //
 //  Created by Susan Kohler on 10/26/18.
 //  Copyright © 2018 Susan Kohler. All rights reserved.
-//
+//  webview contents disappear when slider moves
+//  fixed by putting sliders in sliderContainer (view) - now just fix layout
+//  now web page zooming works on phone - still not for TacoBell on iPad
+//  added ignore limits to config - now works for all 3 test urls
+// changed sliders to text boxes
+//  changed display name to EatItOrNot
+//  added NutritionFacts.html 
+//  other web sites added
+//  added forward/backward swipes
+//  TODO: - add proper content and nicer formatting for info stuff"Salt
+//  added art work
 
 import UIKit
 
