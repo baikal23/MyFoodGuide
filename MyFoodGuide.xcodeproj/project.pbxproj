@@ -25,6 +25,7 @@
 		80C82A60219F200700FBAD58 /* InfoTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C82A5C219F200700FBAD58 /* InfoTableTableViewController.swift */; };
 		80C82A61219F200700FBAD58 /* InfoMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C82A5D219F200700FBAD58 /* InfoMessageViewController.swift */; };
 		80C82A6421ACB86900FBAD58 /* Tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C82A6321ACB86900FBAD58 /* Tree.png */; };
+		80C82A8621BF29B600FBAD58 /* NutritionFacts.html in Resources */ = {isa = PBXBuildFile; fileRef = 80C82A8521BF29B600FBAD58 /* NutritionFacts.html */; };
 		AD22816822F87A2E0704F04F /* Pods_MyFoodGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02894DCC576A3C5DD3D0F76F /* Pods_MyFoodGuideTests.framework */; };
 		F2838F83F51F5129663E4AD6 /* Pods_MyFoodGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D2C205BCAD9984AC4A34B2 /* Pods_MyFoodGuide.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		80C82A5C219F200700FBAD58 /* InfoTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableTableViewController.swift; sourceTree = "<group>"; };
 		80C82A5D219F200700FBAD58 /* InfoMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoMessageViewController.swift; sourceTree = "<group>"; };
 		80C82A6321ACB86900FBAD58 /* Tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tree.png; path = Artwork/Tree.png; sourceTree = SOURCE_ROOT; };
+		80C82A8521BF29B600FBAD58 /* NutritionFacts.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NutritionFacts.html; sourceTree = SOURCE_ROOT; };
 		B038D8EA040788C21AC0BC07 /* Pods-MyFoodGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFoodGuideTests.release.xcconfig"; path = "Target Support Files/Pods-MyFoodGuideTests/Pods-MyFoodGuideTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8E8ADB751FB6F916B7F88E /* Pods-MyFoodGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFoodGuide.debug.xcconfig"; path = "Target Support Files/Pods-MyFoodGuide/Pods-MyFoodGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 				8013DD5E2183434000D98968 /* Info.plist */,
 				804267A42183B0780026B3E3 /* food.png */,
 				80C82A6321ACB86900FBAD58 /* Tree.png */,
+				80C82A8521BF29B600FBAD58 /* NutritionFacts.html */,
 				80C82A52219E3DE800FBAD58 /* NutritionFacts2.html */,
 				80C82A54219F15BF00FBAD58 /* NutritionFacts3.html */,
 			);
@@ -319,6 +322,7 @@
 				8013DD5A2183434000D98968 /* Assets.xcassets in Resources */,
 				8013DD582183433E00D98968 /* Main.storyboard in Resources */,
 				80C82A55219F15BF00FBAD58 /* NutritionFacts3.html in Resources */,
+				80C82A8621BF29B600FBAD58 /* NutritionFacts.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

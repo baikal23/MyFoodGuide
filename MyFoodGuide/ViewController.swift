@@ -196,16 +196,19 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     // MARK: - Keyboard Control
     @objc func tapBackground(_ sender: UITapGestureRecognizer) {
         print("Background tapped")
+        self.barChartUpdate()
         self.view.endEditing(true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        self.barChartUpdate()
         textField.resignFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //textField.resignFirstResponder()
         print("Return pressed")
+        self.barChartUpdate()
         self.view.endEditing(true)
         return false
     }

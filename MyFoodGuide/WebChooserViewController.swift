@@ -29,21 +29,21 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var pickerData = ["MacDonald's",
+    var pickerData = ["Applebee’s",
+                      "Burger King",
+                      "Chipotle",
+                      "Cumberland Farms",
+                      "Domino’s",
+                      "Dunkin’ Donuts",
+                      "MacDonald's",
+                      "Moe’s",
+                      "Panera Bread",
+                      "Pizza Hut",
+                      "Starbuck's",
                       "Subway",
                       "Taco Bell",
-                      "Cumberland Farms",
-                      "Burger King",
-                      "Dunkin’ Donuts",
                       "Wendy’s",
                       "99 Restaurant",
-                      "Panera Bread",
-                      "Chipotle",
-                      "Moe’s",
-                      "Starbuck's",
-                      "Applebee’s",
-                      "Pizza Hut",
-                      "Domino’s",
                       "MyFoodDiary",
                       "MyFoodDiary-Brands",
                       "Nutrition Facts"]
@@ -83,24 +83,21 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLayoutSubviews() {
         print("Layout subview done")
         if (!webViewLoaded) {
-        let request = URLRequest(url: URL(string: "https://www.mcdonalds.com/us/en-us/about-our-food/nutrition-calculator.html")!)
-        let config = WKWebViewConfiguration()
-         let js = "document.addEventListener('click', function(){ window.webkit.messageHandlers.clickListener.postMessage('My hovercraft is full of eels!'); })"
-        let js2 = "document.querySelector('meta[name=viewport]').setAttribute('content','width=device-width,initial-scale=1,maximum-scale=10,user-scalable=yes');"
-        let js3 = "var meta = document.createElement('meta');meta.setAttribute('name', 'viewport');meta.setAttribute('content', 'width=device-width, initial-scale=0.5, maximum-scale=10.0, user-scalable=yes');document.getElementsByTagName('head')[0].appendChild(meta);"
-        
-        let script = WKUserScript(source: js3, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-        
-        config.userContentController.addUserScript(script)
-        config.userContentController.add(self, name: "clickListener")
-        config.ignoresViewportScaleLimits = true
-        
-        webView = WKWebView(frame: webContainer.bounds, configuration: config)
-        webContainer.addSubview(webView)
-        webView.navigationDelegate = self
-        webView.load(request)
-        webView.allowsBackForwardNavigationGestures = true
-        webViewLoaded = true
+            let request = URLRequest(url: URL(string: "https://www.myfooddiary.com/brand/applebees")!)
+            let config = WKWebViewConfiguration()
+             let js = "document.addEventListener('click', function(){ window.webkit.messageHandlers.clickListener.postMessage('My hovercraft is full of eels!'); })"
+            let js2 = "document.querySelector('meta[name=viewport]').setAttribute('content','width=device-width,initial-scale=1,maximum-scale=10,user-scalable=yes');"
+            let js3 = "var meta = document.createElement('meta');meta.setAttribute('name', 'viewport');meta.setAttribute('content', 'width=device-width, initial-scale=0.5, maximum-scale=10.0, user-scalable=yes');document.getElementsByTagName('head')[0].appendChild(meta);"
+            let script = WKUserScript(source: js3, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+            config.userContentController.addUserScript(script)
+            config.userContentController.add(self, name: "clickListener")
+            config.ignoresViewportScaleLimits = true
+            webView = WKWebView(frame: webContainer.bounds, configuration: config)
+            webContainer.addSubview(webView)
+            webView.navigationDelegate = self
+            webView.load(request)
+            webView.allowsBackForwardNavigationGestures = true
+            webViewLoaded = true
         }
     }
     
@@ -157,7 +154,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let url = URL(string: "https://www.tacobell.com/nutrition/info")!
             webView.load(URLRequest(url: url))
         } else if selection == "Nutrition Facts" {
-            let url = Bundle.main.url(forResource: "NutritionFacts3", withExtension: "html")!
+            let url = Bundle.main.url(forResource: "NutritionFacts", withExtension: "html")!
             webView.loadFileURL(url, allowingReadAccessTo: url)
             let request = URLRequest(url: url)
             webView.load(request)
@@ -189,7 +186,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let url = URL(string: "https://www.starbucks.com/menu/catalog/nutrition?food=all#food=all&page=undefined")!
             webView.load(URLRequest(url: url))
         } else if selection == "Applebee’s" {
-            let url = URL(string: "https://applebees,com/en/nutritional-info")!
+            let url = URL(string: "https://www.myfooddiary.com/brand/applebees")!
             webView.load(URLRequest(url: url))
         } else if selection == "Pizza Hut" {
             let url = URL(string: "https://m.nutritionix.com/pizza-hut/menu/premium/")!
