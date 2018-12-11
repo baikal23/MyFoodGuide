@@ -17,10 +17,19 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
    
     @IBOutlet weak var caloriesTextField: UITextField!
     @IBOutlet weak var fatTextField: UITextField!
+    @IBOutlet weak var fat2TF: UITextField!
     
+    @IBOutlet weak var fat1TF: UITextField!
     @IBOutlet weak var sugarTextField: UITextField!
+    @IBOutlet weak var sugar2TF: UITextField!
+    @IBOutlet weak var sugar1TF: UITextField!
     @IBOutlet weak var sodiumTextField: UITextField!
+
+    @IBOutlet weak var sodium1TF: UITextField!
+    @IBOutlet weak var sodium2TF: UITextField!
+    @IBOutlet weak var calories2TF: UITextField!
     
+    @IBOutlet weak var calories1TF: UITextField!
     @IBOutlet weak var saltLabel: UILabel!
     @IBOutlet weak var sugarLabel: UILabel!
     @IBOutlet weak var fatLabel: UILabel!
@@ -63,9 +72,17 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.webPicker.delegate = self
         self.webPicker.dataSource = self
         sugarTextField.delegate = self
+        sugar1TF.delegate = self
+        sugar2TF.delegate = self
         sodiumTextField.delegate = self
+        sodium1TF.delegate = self
+        sodium2TF.delegate = self
         fatTextField.delegate = self
+        fat1TF.delegate    = self
+        fat2TF.delegate = self
         caloriesTextField.delegate = self
+        calories1TF.delegate = self
+        calories2TF.delegate = self
     }
     // this would put an image in the background
     func assignBackground(){
@@ -118,10 +135,57 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if segue.identifier == "unwindSegueToVC1" {
             print("Unwinding")
             let mainVC = segue.destination as! ViewController
-            mainVC.caloriesTextField.text = caloriesTextField.text
+           /* mainVC.caloriesTextField.text = caloriesTextField.text
             mainVC.fatTextField.text = fatTextField.text
             mainVC.sodiumTextField.text = sodiumTextField.text
-            mainVC.sugarTextField.text = sugarTextField.text
+            mainVC.sugarTextField.text = sugarTextField.text*/
+            var calories:Double = 0.0
+            if calories1TF.text!.isNumeric {
+                calories = calories + Double(calories1TF.text!)!
+            }
+            if calories2TF.text!.isNumeric {
+                calories = calories + Double(calories2TF.text!)!
+            }
+            if caloriesTextField.text!.isNumeric {
+                calories = calories + Double(caloriesTextField.text!)!
+            }
+            mainVC.caloriesTextField.text = String(Int(calories)) // no fractional cals
+            
+            var satFat:Double = 0
+            if fat1TF.text!.isNumeric {
+                satFat = satFat + Double(fat1TF.text!)!
+            }
+            if fat2TF.text!.isNumeric {
+                satFat = satFat + Double(fat2TF.text!)!
+            }
+            if fatTextField.text!.isNumeric {
+                satFat = satFat + Double(fatTextField.text!)!
+            }
+            mainVC.fatTextField.text = String(satFat)
+            
+            var sodium:Double = 0
+            if sodium1TF.text!.isNumeric {
+                sodium = sodium + Double(sodium1TF.text!)!
+            }
+            if sodium2TF.text!.isNumeric {
+                sodium = sodium + Double(sodium2TF.text!)!
+            }
+            if sodiumTextField.text!.isNumeric {
+                sodium = sodium + Double(sodiumTextField.text!)!
+            }
+            mainVC.sodiumTextField.text = String(Int(sodium)) // mg Na is integer
+            
+            var sugar:Double = 0
+            if sugar1TF.text!.isNumeric {
+                sugar = sugar + Double(sugar1TF.text!)!
+            }
+            if sugar2TF.text!.isNumeric {
+                sugar = sugar + Double(sugar2TF.text!)!
+            }
+            if sugarTextField.text!.isNumeric {
+                sugar = sugar + Double(sugarTextField.text!)!
+            }
+            mainVC.sugarTextField.text = String(sugar)
             mainVC.barChartUpdate()
         }
     }

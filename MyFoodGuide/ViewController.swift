@@ -252,17 +252,29 @@ class MyValueFormatter: IValueFormatter {
    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
         if entry.x == 0 {
             //return String((value / 100.0) * kCalories)
-            return String(Int(valueArray[0]))
+            if (valueArray[0] > 0) {
+                return String(Int(valueArray[0]))
+            } else {
+                return ""
+            }
         } else if entry.x == 1 {
-           // return String((value / 100.0) * kSatFat)
-            return String(valueArray[1]) + " g"
+            if (valueArray[1] > 0) {
+                return String((valueArray[1])) + " g"
+            } else {
+                return ""
+            }
         } else if entry.x == 2 {
-            print("value is \(value) and constant is \(kSalt)")
-           // return String((value / 100.0) * kSalt)
-            return String(Int(valueArray[2])) + " mg"
+            if (valueArray[2] > 0) {
+                return String(Int(valueArray[2])) + " mg"
+            } else {
+                return ""
+            }
         } else {
-            //return String((value / 100.0) * kSugar)
-            return String(valueArray[3]) + " g"
+            if (valueArray[3] > 0) {
+                return String((valueArray[3])) + " g"
+            } else {
+                return ""
+            }
         }
     }
 }
