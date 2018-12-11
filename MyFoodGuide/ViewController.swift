@@ -16,10 +16,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     var sodiumPercent = 0
     var sugarPercent = 0
     var satFatPercent = 0
-    var sodium = Float(0.0)
-    var calories = Float(0.0)
-    var satFat = Float(0.0)
-    var sugar = Float(0.0)
+    var sodium = Double(0.0)
+    var calories = Double(0.0)
+    var satFat = Double(0.0)
+    var sugar = Double(0.0)
     
     @IBOutlet weak var caloriesTextField: UITextField!
     
@@ -103,7 +103,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         
         let calorieValue = caloriesTextField.text!
         if calorieValue.isNumeric {
-            calories = Float(calorieValue) ?? 0.0
+            calories = Double(calorieValue) ?? 0.0
             caloriePercent = Int(calories * 100 / kCalories)
         } else {
             caloriePercent = 0
@@ -114,7 +114,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         
         let satFatValue = fatTextField.text!
         if satFatValue.isNumeric {
-            satFat = Float(satFatValue) ?? 0.0
+            satFat = Double(satFatValue) ?? 0.0
             satFatPercent = Int(satFat * 100 / kSatFat)
         } else {
             satFatPercent = 0
@@ -125,7 +125,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         
         let sodiumValue = sodiumTextField.text!
         if sodiumValue.isNumeric {
-            sodium = Float(sodiumValue) ?? 0.0
+            sodium = Double(sodiumValue) ?? 0.0
             sodiumPercent = Int(sodium * 100 / kSalt)
         } else {
             sodiumPercent = 0
@@ -136,7 +136,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
        
         let sugarValue = sugarTextField.text!
         if sugarValue.isNumeric {
-            sugar = Float(sugarValue) ?? 0.0
+            sugar = Double(sugarValue) ?? 0.0
             sugarPercent = Int(sugar * 100 / kSugar)
         } else {
             sugarPercent = 0
@@ -183,9 +183,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         barChart.rightAxis.granularity = Double(100.0)
         let data = BarChartData(dataSets: [dataSet])
         data.setDrawValues(false) // this eliminates the number
+        data.setValueFont(UIFont.systemFont(ofSize: 20.0))
         barChart.data = data
         //barChart.chartDescription?.text = "Number of Widgets by Type"
         barChart.xAxis.labelFont = UIFont.init(name: "AvenirNext-Regular", size: 20)!
+        
+        barChart.barData?.setValueFormatter(MyValueFormatter())
+        barChart.barData?.setDrawValues(true)
         // Color
         //dataSet.colors = ChartColorTemplates.vordiplom()
         
@@ -234,5 +238,27 @@ extension String {
         let white = " "
         let result = self.contains(white)
         return result
+    }
+}
+
+class MyValueFormatter: IValueFormatter {
+    //var xValueForToday: Double?  // Set a value
+    // problem with roundoff error - this is not good to convert back
+    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        /*if entry.x == 0 {
+            return String((value / 100.0) * kCalories)
+        } else if entry.x == 1 {
+            return String((value / 100.0) * kSatFat)
+        } else if entry.x == 2 {
+            print("value is \(value) and constant is \(kSalt)")
+            return String((value / 100.0) * kSalt)
+        } else {
+            return String((value / 100.0) * kSugar)
+        }*/
+        if value > 1 {
+            return String(Int(value)) + " % "
+        } else {
+            return ""
+        }
     }
 }

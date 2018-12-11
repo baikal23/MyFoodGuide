@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kCalories = Float(2000.0)
-let kSatFat = Float(20.0)
-let kSalt = Float(2400.0)
-let kSugar = Float(50.0)
+let kCalories = Double(2000.0)
+let kSatFat = Double(20.0)
+let kSalt = Double(2400.0)
+let kSugar = Double(50.0)
