@@ -187,8 +187,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         barChart.data = data
         //barChart.chartDescription?.text = "Number of Widgets by Type"
         barChart.xAxis.labelFont = UIFont.init(name: "AvenirNext-Regular", size: 20)!
-        
-        barChart.barData?.setValueFormatter(MyValueFormatter())
+        let myFormatter = MyValueFormatter()
+        myFormatter.valueArray[0] = calories
+        myFormatter.valueArray[1] = satFat
+        myFormatter.valueArray[2] = sodium
+        myFormatter.valueArray[3] = sugar
+        barChart.barData?.setValueFormatter(myFormatter)
         barChart.barData?.setDrawValues(true)
         // Color
         //dataSet.colors = ChartColorTemplates.vordiplom()
@@ -242,23 +246,23 @@ extension String {
 }
 
 class MyValueFormatter: IValueFormatter {
+    var valueArray:[Double] = [1, 2, 3, 4]
     //var xValueForToday: Double?  // Set a value
     // problem with roundoff error - this is not good to convert back
-    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
-        /*if entry.x == 0 {
-            return String((value / 100.0) * kCalories)
+   func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        if entry.x == 0 {
+            //return String((value / 100.0) * kCalories)
+            return String(Int(valueArray[0]))
         } else if entry.x == 1 {
-            return String((value / 100.0) * kSatFat)
+           // return String((value / 100.0) * kSatFat)
+            return String(valueArray[1]) + " g"
         } else if entry.x == 2 {
             print("value is \(value) and constant is \(kSalt)")
-            return String((value / 100.0) * kSalt)
+           // return String((value / 100.0) * kSalt)
+            return String(Int(valueArray[2])) + " mg"
         } else {
-            return String((value / 100.0) * kSugar)
-        }*/
-        if value > 1 {
-            return String(Int(value)) + " % "
-        } else {
-            return ""
+            //return String((value / 100.0) * kSugar)
+            return String(valueArray[3]) + " g"
         }
     }
 }
