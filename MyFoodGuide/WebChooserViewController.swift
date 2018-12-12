@@ -35,7 +35,8 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var fatLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var webContainer: UIView!
-    
+    @IBOutlet weak var firstButton: UIButton!
+    @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var pickerData = ["Applebee’s",
@@ -83,6 +84,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         caloriesTextField.delegate = self
         calories1TF.delegate = self
         calories2TF.delegate = self
+        self.hideFields()
     }
     // this would put an image in the background
     func assignBackground(){
@@ -118,6 +120,31 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         }
     }
     
+    func hideFields() {
+        sodium1TF.isHidden = true
+        fat1TF.isHidden = true
+        calories1TF.isHidden = true
+        sugar1TF.isHidden = true
+        secondButton.isHidden = true
+        sodiumTextField.isHidden = true
+        fatTextField.isHidden = true
+        caloriesTextField.isHidden = true
+        sugarTextField.isHidden = true
+        
+    }
+    @IBAction func firstButtonPressed(_ sender: Any) {
+        sodium1TF.isHidden = false
+        fat1TF.isHidden = false
+        calories1TF.isHidden = false
+        sugar1TF.isHidden = false
+        secondButton.isHidden = false
+    }
+    @IBAction func secondButtonPressed(_ sender: Any) {
+        sodiumTextField.isHidden = false
+        fatTextField.isHidden = false
+        caloriesTextField.isHidden = false
+        sugarTextField.isHidden = false
+    }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillHideNotification, object: nil)
         // NotificationCenter.default.removeObserver(self,name: UIResponder.keyboardWillShowNotification, object: nil)
