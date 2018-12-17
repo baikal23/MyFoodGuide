@@ -45,7 +45,7 @@
 		<key>name</key>
 		<string>Collaborators and Funding</string>
 		<key>message</key>
-		<string>This app was designed by Susan J. Kohler, Ph.D. in collaboration with Schenectady ARC with nutritional consultation provided by Cornell Cooperative Extension of Schenectady County, New York.  It was funded in part through a grant from the New York State Department of Health Disability and Health Program through a grant from the Centers for Disease Control and Prevention (CDC-RFA-DD16-1603)</string>
+		<string>This app was designed by Susan J. Kohler, Ph.D. in collaboration with Schenectady ARC with nutritional consultation provided by Cornell Cooperative Extension of Schenectady County, New York.  It was funded in part through a grant from the New York State Department of Health Disability and Health Program through CDC, Disability and Health Branch cooperative agreement, award number NU27DD00004. The finding and conclusions of this report are the responsibility of the authors and do not necessarily reflect the official position of CDC.</string>
 	</dict>
 	<key>SchenectadyARC</key>
 	<dict>
