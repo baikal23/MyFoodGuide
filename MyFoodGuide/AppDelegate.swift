@@ -15,6 +15,7 @@
 //  added forward/backward swipes
 //  TODO: - add proper content and nicer formatting for info stuff"Salt
 //  added art work
+//  3/25/19 added more labels and fixed activity indicator for web page load
 
 import UIKit
 
