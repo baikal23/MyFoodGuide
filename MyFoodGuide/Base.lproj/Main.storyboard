@@ -145,7 +145,7 @@
         <!--Web Chooser View Controller-->
         <scene sceneID="TY0-FB-SzT">
             <objects>
-                <viewController id="zLx-fT-oZw" customClass="WebChooserViewController" customModule="MyFoodGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WebVC" id="zLx-fT-oZw" customClass="WebChooserViewController" customModule="MyFoodGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ESj-Bc-2VV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

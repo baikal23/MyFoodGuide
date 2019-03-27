@@ -17,6 +17,7 @@
 //  added art work
 //  3/25/19 added more labels and fixed activity indicator for web page load
 //  graph looks good - somehow % labels only on left
+//  added more info items and also intro screen - just need proper png for it
 
 import UIKit
 
@@ -24,10 +25,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var mainVC: UIViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let directionsVC = DirectionsViewController()
+        self.window!.rootViewController = directionsVC
         return true
     }
 
