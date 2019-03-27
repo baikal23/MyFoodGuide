@@ -12,6 +12,7 @@ import WebKit
 class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, WKNavigationDelegate, WKUIDelegate,UIScrollViewDelegate, WKScriptMessageHandler, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     
+    @IBOutlet weak var infoButton: UIButton!
     
     @IBOutlet weak var webPicker: UIPickerView!
    
@@ -38,6 +39,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var firstButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var graphButton: UIButton!
     
     var pickerData = ["Applebee’s",
                       "Burger King",
@@ -45,7 +47,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
                       "Cumberland Farms",
                       "Domino’s",
                       "Dunkin’ Donuts",
-                      "MacDonald's",
+                      "McDonald's",
                       "Moe’s",
                       "Panera Bread",
                       "Pizza Hut",
@@ -59,6 +61,13 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
                       "Nutrition Facts"]
     var webView: WKWebView!
     var webViewLoaded = false
+    
+    @IBAction func infoButtonPushed(_ sender: Any) {
+        performSegue(withIdentifier: "infoSegueFromWebVC", sender: self)
+    }
+    @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)
+    {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +93,13 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         caloriesTextField.delegate = self
         calories1TF.delegate = self
         calories2TF.delegate = self
+        graphButton.layer.cornerRadius = CGFloat(6.0)
+        graphButton.layer.borderWidth = CGFloat(1.0)
+        graphButton.layer.borderColor = UIColor.black.cgColor
+        graphButton.clipsToBounds = true
+        if let pickerRow = UserDefaults.standard.object(forKey: "pickerRow") as? Int {
+            self.webPicker.selectRow(pickerRow, inComponent: 0, animated: false)
+        }
         self.hideFields()
     }
     // this would put an image in the background
@@ -102,7 +118,10 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLayoutSubviews() {
         print("Layout subview done")
         if (!webViewLoaded) {
-            let request = URLRequest(url: URL(string: "https://www.myfooddiary.com/brand/applebees")!)
+            var request = URLRequest(url: URL(string: "https://www.myfooddiary.com/brand/applebees")!)
+            if let lastURLString = UserDefaults.standard.object(forKey: "lastURL") as? String {
+                request = URLRequest(url: URL(string: lastURLString)!)
+            }
             let config = WKWebViewConfiguration()
              let js = "document.addEventListener('click', function(){ window.webkit.messageHandlers.clickListener.postMessage('My hovercraft is full of eels!'); })"
             let js2 = "document.querySelector('meta[name=viewport]').setAttribute('content','width=device-width,initial-scale=1,maximum-scale=10,user-scalable=yes');"
@@ -155,12 +174,11 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
         // Dispose of any resources that can be recreated.
     }
     @IBAction func donePushed(_ sender: Any) {
-        performSegue(withIdentifier: "unwindSegueToVC1", sender: self)
+        performSegue(withIdentifier: "segueToVC1", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindSegueToVC1" {
-            print("Unwinding")
+        if segue.identifier == "segueToVC1" {
             let mainVC = segue.destination as! ViewController
            /* mainVC.caloriesTextField.text = caloriesTextField.text
             mainVC.fatTextField.text = fatTextField.text
@@ -176,7 +194,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             if caloriesTextField.text!.isNumeric {
                 calories = calories + Double(caloriesTextField.text!)!
             }
-            mainVC.caloriesTextField.text = String(Int(calories)) // no fractional cals
+            mainVC.calories = Double(Int(calories)) // no fractional cals
             
             var satFat:Double = 0
             if fat1TF.text!.isNumeric {
@@ -188,7 +206,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             if fatTextField.text!.isNumeric {
                 satFat = satFat + Double(fatTextField.text!)!
             }
-            mainVC.fatTextField.text = String(satFat)
+            mainVC.satFat = Double(satFat)
             
             var sodium:Double = 0
             if sodium1TF.text!.isNumeric {
@@ -200,7 +218,7 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             if sodiumTextField.text!.isNumeric {
                 sodium = sodium + Double(sodiumTextField.text!)!
             }
-            mainVC.sodiumTextField.text = String(Int(sodium)) // mg Na is integer
+            mainVC.sodium = Double(Int(sodium)) // mg Na is integer
             
             var sugar:Double = 0
             if sugar1TF.text!.isNumeric {
@@ -212,8 +230,8 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             if sugarTextField.text!.isNumeric {
                 sugar = sugar + Double(sugarTextField.text!)!
             }
-            mainVC.sugarTextField.text = String(sugar)
-            mainVC.barChartUpdate()
+            mainVC.sugar = Double(sugar)
+            //mainVC.barChartUpdate()
         }
     }
     
@@ -231,68 +249,70 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("We selected \(pickerData[row])")
         let selection = pickerData[row]
-        
-        if selection == "MacDonald's" {
+        var url = URL(string: "https://www.bk.com/pdfs/nutrition.pdf")! // starting urlvar
+        if selection == "McDonald's" {
             print("Displaying Mac")
-            let url = URL(string: "https://www.mcdonalds.com/us/en-us/about-our-food/nutrition-calculator.html")!
+            url = URL(string: "https://www.mcdonalds.com/us/en-us/about-our-food/nutrition-calculator.html")!
             webView.load(URLRequest(url: url))
         } else if selection == "Subway" {
             print("Displaying Subway")
-            let url = URL(string: "https://www.subway.com/en-US/MenuNutrition/Nutrition/NutritionGrid")!
+            url = URL(string: "https://www.subway.com/en-US/MenuNutrition/Nutrition/NutritionGrid")!
             webView.load(URLRequest(url: url))
         } else if selection == "Taco Bell" {
             print("Displaying Taco Bell")
-            let url = URL(string: "https://www.tacobell.com/nutrition/info")!
+            url = URL(string: "https://www.tacobell.com/nutrition/info")!
             webView.load(URLRequest(url: url))
         } else if selection == "Nutrition Facts" {
-            let url = Bundle.main.url(forResource: "NutritionFacts", withExtension: "html")!
+            url = Bundle.main.url(forResource: "NutritionFacts", withExtension: "html")!
             webView.loadFileURL(url, allowingReadAccessTo: url)
             let request = URLRequest(url: url)
             webView.load(request)
         } else if selection == "Cumberland Farms" {
-            let url = URL(string: "https://www.cumberlandfarms.com/food/nutrition-information")!
+            url = URL(string: "https://www.cumberlandfarms.com/food/nutrition-information")!
             webView.load(URLRequest(url: url))
         } else if selection == "Burger King" {
-            let url = URL(string: "https://www.bk.com/pdfs/nutrition.pdf")!
+            url = URL(string: "https://www.bk.com/pdfs/nutrition.pdf")!
             webView.load(URLRequest(url: url))
         } else if selection == "Dunkin’ Donuts" {
-            let url = URL(string: "https://www.dunkindonuts.com/content/dam/dd/pdf/nutrition.pdf")!
+            url = URL(string: "https://www.dunkindonuts.com/content/dam/dd/pdf/nutrition.pdf")!
             webView.load(URLRequest(url: url))
         } else if selection == "Wendy’s" {
-            let url = URL(string: "https://menu.wendys.com/en_US/categories/?_ga=2.16799417.1675749095.1542375685-1660908970.1542375685")!
+            url = URL(string: "https://menu.wendys.com/en_US/categories/?_ga=2.16799417.1675749095.1542375685-1660908970.1542375685")!
             webView.load(URLRequest(url: url))
         } else if selection == "99 Restaurant" {
-            let url = URL(string: "https://www.99restaurants.com/media/1774/ninety-nine-restaurant-nutritional-menu.pdf")!
+            url = URL(string: "https://www.99restaurants.com/media/1774/ninety-nine-restaurant-nutritional-menu.pdf")!
             webView.load(URLRequest(url: url))
         } else if selection == "Panera Bread" {
-            let url = URL(string: "https://www.panerabread.com/content/dam/panerabread/documents/nutrition/Panera-Nutrition.pdf")!
+            url = URL(string: "https://www.panerabread.com/content/dam/panerabread/documents/nutrition/Panera-Nutrition.pdf")!
             webView.load(URLRequest(url: url))
         } else if selection == "Chipotle" {
-            let url = URL(string: "https://www.chipotle.com/nutrition-calculator#")!
+            url = URL(string: "https://www.chipotle.com/nutrition-calculator#")!
             webView.load(URLRequest(url: url))
         } else if selection == "Moe’s" {
-            let url = URL(string: "https://www.moes.com/nutrition")!
+            url = URL(string: "https://www.moes.com/nutrition")!
             webView.load(URLRequest(url: url))
         } else if selection == "Starbuck's" {
-            let url = URL(string: "https://www.starbucks.com/menu/catalog/nutrition?food=all#food=all&page=undefined")!
+            url = URL(string: "https://www.starbucks.com/menu/catalog/nutrition?food=all#food=all&page=undefined")!
             webView.load(URLRequest(url: url))
         } else if selection == "Applebee’s" {
-            let url = URL(string: "https://www.myfooddiary.com/brand/applebees")!
+            url = URL(string: "https://www.myfooddiary.com/brand/applebees")!
             webView.load(URLRequest(url: url))
         } else if selection == "Pizza Hut" {
-            let url = URL(string: "https://m.nutritionix.com/pizza-hut/menu/premium/")!
+            url = URL(string: "https://m.nutritionix.com/pizza-hut/menu/premium/")!
             webView.load(URLRequest(url: url))
         } else if selection == "Domino’s" {
-            let url = URL(string: "https://cache.dominos.com/olo/5_46_3/assets/build/market/US/_en/pdf/DominosNutritionGuide.pdf")!
+            url = URL(string: "https://cache.dominos.com/olo/5_46_3/assets/build/market/US/_en/pdf/DominosNutritionGuide.pdf")!
             webView.load(URLRequest(url: url))
         } else if selection == "MyFoodDiary" {
-            let url = URL(string: "https://www.myfooddiary.com")!
+            url = URL(string: "https://www.myfooddiary.com")!
             webView.load(URLRequest(url: url))
         } else if selection == "MyFoodDiary-Brands" {
-            let url = URL(string: "https://www.myfooddiary.com/brand")!
+            url = URL(string: "https://www.myfooddiary.com/brand")!
             webView.load(URLRequest(url: url))
         }
-        
+        let urlString = "\(url)"
+        UserDefaults.standard.setValue(urlString, forKey: "lastURL")
+        UserDefaults.standard.setValue(row, forKey: "pickerRow")
         
     }
     // MARK: - Keyboard Control

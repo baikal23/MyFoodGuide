@@ -21,17 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     var satFat = Double(0.0)
     var sugar = Double(0.0)
     
-    @IBOutlet weak var caloriesTextField: UITextField!
-    
-    @IBOutlet weak var fatTextField: UITextField!
-    
-    @IBOutlet weak var sodiumTextField: UITextField!
-    @IBOutlet weak var sugarTextField: UITextField!
-    @IBOutlet weak var caloriesLabel: UILabel!
-    @IBOutlet weak var saltLabel: UILabel!
-    @IBOutlet weak var sugarLabel: UILabel!
-    @IBOutlet weak var fatLabel: UILabel!
-    
+    @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var barChart: BarChartView!
     
     @IBOutlet weak var infoButton: UIButton!
@@ -50,10 +40,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     override func viewDidLoad() {
         super.viewDidLoad()
       //  self.assignBackground()
-        sugarTextField.delegate = self
-        sodiumTextField.delegate = self
-        fatTextField.delegate = self
-        caloriesTextField.delegate = self
+       
         self.barChart.backgroundColor = UIColor.white
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapBackground(_:)))
         tapGesture.cancelsTouchesInView = true
@@ -63,6 +50,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
         print("In VC ViewDidLoad")
+        returnButton.layer.cornerRadius = CGFloat(6.0)
+        returnButton.layer.borderWidth = CGFloat(1.0)
+        returnButton.layer.borderColor = UIColor.black.cgColor
+        returnButton.clipsToBounds = true
        // barChart.backgroundColor = UIColor.clear
         barChartUpdate()
     }
@@ -101,7 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         var barsToPlot = [BarChartDataEntry]()
         let labels = ["Calories", "Sat Fat", "Sodium", "Sugar"]
         
-        let calorieValue = caloriesTextField.text!
+       /* let calorieValue = caloriesTextField.text!
         if calorieValue.isNumeric {
             calories = Double(calorieValue) ?? 0.0
             caloriePercent = Int(calories * 100 / kCalories)
@@ -143,8 +134,23 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         }
         if sugarPercent == 0 {
             sugarPercent = 1 // so column remains on graph
+        }*/
+        caloriePercent = Int(calories * 100 / kCalories)
+        if caloriePercent == 0 {
+            caloriePercent = 1 // so column remains on graph
         }
-        
+        satFatPercent = Int(satFat * 100 / kSatFat)
+        if satFatPercent == 0 {
+            satFatPercent = 1 // so column remains on graph
+        }
+        sodiumPercent = Int(sodium * 100 / kSalt)
+        if sodiumPercent == 0 {
+            sodiumPercent = 1 // so column remains on graph
+        }
+        sugarPercent = Int(sugar * 100 / kSugar)
+        if sugarPercent == 0 {
+            sugarPercent = 1 // so column remains on graph
+        }
         let numbers = [caloriePercent, satFatPercent, sodiumPercent, sugarPercent]
         barsToPlot = [] // start with empty array
         for (index, element) in numbers.enumerated() {
@@ -169,8 +175,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         barChart.xAxis.granularity = 1
         barChart.leftAxis.axisMaximum = Double(100.0)
         barChart.leftAxis.axisMinimum = Double(0.0)
-        barChart.rightAxis.axisMinimum = barChart.leftAxis.axisMinimum
-        barChart.rightAxis.axisMaximum = barChart.leftAxis.axisMaximum
+        barChart.rightAxis.axisMinimum = Double(100.0)
+        barChart.rightAxis.axisMaximum = Double(0.0)
         barChart.xAxis.labelPosition = .bottom
         barChart.xAxis.drawGridLinesEnabled = false
         // barChart.leftAxis.drawGridLinesEnabled = false
@@ -178,7 +184,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         
         
         let limitLine = ChartLimitLine(limit: 100.0, label: "Target")
-        barChart.rightAxis.addLimitLine(limitLine)
+        //barChart.rightAxis.addLimitLine(limitLine)
         barChart.leftAxis.granularity = Double(100.0)
         barChart.rightAxis.granularity = Double(100.0)
         let data = BarChartData(dataSets: [dataSet])
@@ -187,6 +193,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         barChart.data = data
         //barChart.chartDescription?.text = "Number of Widgets by Type"
         barChart.xAxis.labelFont = UIFont.init(name: "AvenirNext-Regular", size: 20)!
+        barChart.leftAxis.labelFont = UIFont.init(name: "AvenirNext-Regular", size: 15)!
+        barChart.rightAxis.labelFont = barChart.leftAxis.labelFont
+        barChart.leftAxis.valueFormatter = MyAxisFormatter()
+        barChart.rightAxis.valueFormatter = MyAxisFormatter()
         let myFormatter = MyValueFormatter()
         myFormatter.valueArray[0] = calories
         myFormatter.valueArray[1] = satFat
@@ -244,7 +254,13 @@ extension String {
         return result
     }
 }
-
+class MyAxisFormatter: NSObject, IAxisValueFormatter {
+    
+    var labels: [Int : String] = [ 0 : "0 %", 100 : "100 %"]
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return labels[Int((value).rounded())] ?? ""
+    }
+}
 class MyValueFormatter: IValueFormatter {
     var valueArray:[Double] = [1, 2, 3, 4]
     //var xValueForToday: Double?  // Set a value
