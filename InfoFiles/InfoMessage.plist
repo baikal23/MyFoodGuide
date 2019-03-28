@@ -72,7 +72,7 @@
 		<key>name</key>
 		<string>Disclaimer</string>
 		<key>message</key>
-		<string>Eat It or Not makes no representations as to the accuracy, validity or timeliness of that information.  This App is intended to be a general guide, and it cannot provide individualized information or address issues such as food allergies, food sensitivities, and/or individualized dietary plans that might affect an individual’s health.  Any diet plans or significant changes in diet for any individual should be based on professional advice for that individual, rather than the generalized guidance provided by this app.</string>
+		<string>Eat It or Not connects users to nutritional information available on the internet and makes no representations as to the accuracy, validity or timeliness of that information.  This App is intended to be a general guide, and it cannot provide individualized information or address issues such as food allergies, food sensitivities, and/or individualized dietary plans that might affect an individual’s health.  Any diet plans or significant changes in diet for any individual should be based on professional advice for that individual, rather than the generalized guidance provided by this app.</string>
 	</dict>
 </dict>
 </plist>
