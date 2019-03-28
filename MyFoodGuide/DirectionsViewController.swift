@@ -12,7 +12,10 @@ class DirectionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imageName = "FoodBasketInfo.png"
+        var imageName = "EatItInfo.png"
+        if (UI_USER_INTERFACE_IDIOM() == .pad) {
+            imageName = "EatItInfoPad.png"
+        }
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image!)
         imageView.frame = self.view.frame

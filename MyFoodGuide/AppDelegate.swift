@@ -17,7 +17,7 @@
 //  added art work
 //  3/25/19 added more labels and fixed activity indicator for web page load
 //  graph looks good - somehow % labels only on left
-//  added more info items and also intro screen - just need proper png for it
+//  added more info items and also intro screen - 
 
 import UIKit
 
