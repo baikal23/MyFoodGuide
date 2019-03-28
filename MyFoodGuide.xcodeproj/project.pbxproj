@@ -27,8 +27,9 @@
 		80C82A6421ACB86900FBAD58 /* Tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 80C82A6321ACB86900FBAD58 /* Tree.png */; };
 		80C82A8621BF29B600FBAD58 /* NutritionFacts.html in Resources */ = {isa = PBXBuildFile; fileRef = 80C82A8521BF29B600FBAD58 /* NutritionFacts.html */; };
 		80E1142F224C3BA3007029B7 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E1142E224C3BA3007029B7 /* DirectionsViewController.swift */; };
-		80E11435224D2953007029B7 /* EatItInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E11434224D2953007029B7 /* EatItInfo.png */; };
 		80E11437224D2CA3007029B7 /* EatItInfoPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E11436224D2CA3007029B7 /* EatItInfoPad.png */; };
+		80E1143B224D5807007029B7 /* EatItPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E1143A224D5807007029B7 /* EatItPhone.png */; };
+		80E1143D224D59A8007029B7 /* EatIt_PadInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 80E1143C224D59A8007029B7 /* EatIt_PadInfo.png */; };
 		AD22816822F87A2E0704F04F /* Pods_MyFoodGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02894DCC576A3C5DD3D0F76F /* Pods_MyFoodGuideTests.framework */; };
 		F2838F83F51F5129663E4AD6 /* Pods_MyFoodGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D2C205BCAD9984AC4A34B2 /* Pods_MyFoodGuide.framework */; };
 /* End PBXBuildFile section */
@@ -83,8 +84,9 @@
 		80C82A6321ACB86900FBAD58 /* Tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Tree.png; path = Artwork/Tree.png; sourceTree = SOURCE_ROOT; };
 		80C82A8521BF29B600FBAD58 /* NutritionFacts.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NutritionFacts.html; sourceTree = SOURCE_ROOT; };
 		80E1142E224C3BA3007029B7 /* DirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
-		80E11434224D2953007029B7 /* EatItInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EatItInfo.png; sourceTree = "<group>"; };
 		80E11436224D2CA3007029B7 /* EatItInfoPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EatItInfoPad.png; sourceTree = "<group>"; };
+		80E1143A224D5807007029B7 /* EatItPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EatItPhone.png; sourceTree = "<group>"; };
+		80E1143C224D59A8007029B7 /* EatIt_PadInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EatIt_PadInfo.png; sourceTree = "<group>"; };
 		B038D8EA040788C21AC0BC07 /* Pods-MyFoodGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFoodGuideTests.release.xcconfig"; path = "Target Support Files/Pods-MyFoodGuideTests/Pods-MyFoodGuideTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8E8ADB751FB6F916B7F88E /* Pods-MyFoodGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFoodGuide.debug.xcconfig"; path = "Target Support Files/Pods-MyFoodGuide/Pods-MyFoodGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,8 +172,9 @@
 				80C82A8521BF29B600FBAD58 /* NutritionFacts.html */,
 				80C82A52219E3DE800FBAD58 /* NutritionFacts2.html */,
 				80C82A54219F15BF00FBAD58 /* NutritionFacts3.html */,
+				80E1143A224D5807007029B7 /* EatItPhone.png */,
+				80E1143C224D59A8007029B7 /* EatIt_PadInfo.png */,
 				80E11436224D2CA3007029B7 /* EatItInfoPad.png */,
-				80E11434224D2953007029B7 /* EatItInfo.png */,
 			);
 			path = MyFoodGuide;
 			sourceTree = "<group>";
@@ -325,15 +328,16 @@
 			files = (
 				80C82A53219E3DE800FBAD58 /* NutritionFacts2.html in Resources */,
 				80E11437224D2CA3007029B7 /* EatItInfoPad.png in Resources */,
+				80E1143B224D5807007029B7 /* EatItPhone.png in Resources */,
 				80C82A5F219F200700FBAD58 /* InfoMessage.plist in Resources */,
 				8013DD5D2183434000D98968 /* LaunchScreen.storyboard in Resources */,
-				80E11435224D2953007029B7 /* EatItInfo.png in Resources */,
 				80C82A6421ACB86900FBAD58 /* Tree.png in Resources */,
 				804267A52183B0780026B3E3 /* food.png in Resources */,
 				8013DD5A2183434000D98968 /* Assets.xcassets in Resources */,
 				8013DD582183433E00D98968 /* Main.storyboard in Resources */,
 				80C82A55219F15BF00FBAD58 /* NutritionFacts3.html in Resources */,
 				80C82A8621BF29B600FBAD58 /* NutritionFacts.html in Resources */,
+				80E1143D224D59A8007029B7 /* EatIt_PadInfo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
