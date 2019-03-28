@@ -286,7 +286,8 @@ class WebChooserViewController: UIViewController, UIPickerViewDelegate, UIPicker
             url = URL(string: "https://www.panerabread.com/content/dam/panerabread/documents/nutrition/Panera-Nutrition.pdf")!
             webView.load(URLRequest(url: url))
         } else if selection == "Chipotle" {
-            url = URL(string: "https://www.chipotle.com/nutrition-calculator#")!
+            //url = URL(string: "https://www.chipotle.com/nutrition-calculator")! // doesn't work - not secure
+            url = URL(string: "https://www.myfooddiary.com/brand/chipotle")!
             webView.load(URLRequest(url: url))
         } else if selection == "Moe’s" {
             url = URL(string: "https://www.moes.com/nutrition")!
