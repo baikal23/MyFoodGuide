@@ -168,7 +168,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         }
         
         //let dataSet = BarChartDataSet(values: [entry1, entry2, entry3], label: "Daily Value")
-        let dataSet = BarChartDataSet(values: barsToPlot, label: "")
+        let dataSet = BarChartDataSet(entries: barsToPlot, label: "")
         dataSet.colors = colorSet
         barChart.chartDescription?.text = ""
         barChart.xAxis.valueFormatter = IndexAxisValueFormatter(values:labels)
